@@ -1,0 +1,44 @@
+﻿@model IEnumerable<FrontEnd.Models.PlanDeEstudioViewModel>
+
+@{
+    ViewData["Title"] = "Planes de Estudio";
+}
+
+<h1>Planes de Estudio</h1>
+
+<p>
+    <a asp-action="Create">Crear Nuevo</a>
+</p>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPlanEstudio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombrePlanEstduio)
+            </th>
+             <th>
+                 <label for="Name">Acciones</label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPlanEstudio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombrePlanEstduio)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.IdPlanEstudio }) |
+                @Html.ActionLink("Details", "Details", new { id=item.IdPlanEstudio }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.IdPlanEstudio })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

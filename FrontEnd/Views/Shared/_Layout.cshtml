@@ -191,6 +191,12 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
+              <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="PlanDeEstudio" asp-action="Index">Planes de Estudio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Curso" asp-action="Index">Cursos</a>
+                        </li>
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -903,5 +909,6 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+@RenderSection("Scripts", required: false)
 </body>
 </html>

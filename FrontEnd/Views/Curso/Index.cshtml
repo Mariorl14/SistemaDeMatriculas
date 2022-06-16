@@ -1,0 +1,83 @@
+﻿@model IEnumerable<FrontEnd.Models.CursoViewModel>
+
+@{
+    ViewData["Title"] = "Cursos ";
+}
+
+<h1>Cursos</h1>
+
+<p>
+    <a asp-action="Create">Crear Nuevo</a>
+</p>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCurso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCurso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodigoCurso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Creditos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duracion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Horario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NaturalezaCurso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPlanEstudioFk)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCurso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCurso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoCurso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio) ₡
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Creditos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duracion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Horario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NaturalezaCurso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPlanEstudioFk)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.IdCurso }) |
+                @Html.ActionLink("Details", "Details", new { id=item.IdCurso }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.IdCurso })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

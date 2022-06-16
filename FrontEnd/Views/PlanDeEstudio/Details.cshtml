@@ -1,0 +1,29 @@
+﻿@model FrontEnd.Models.PlanDeEstudioViewModel
+
+@{
+    ViewData["Title"] = "Planes de Estudio";
+}
+
+<h1>Detalles</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdPlanEstudio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdPlanEstudio)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NombrePlanEstduio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NombrePlanEstduio)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdPlanEstudio }) |
+    <a asp-action="Index">Regresar</a>
+</div>
