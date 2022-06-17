@@ -18,7 +18,7 @@ namespace FrontEnd.Controllers
             return View();
         }
 
-        //Esto es un comentario para prueba del commit
+         //Comentario de prueba
 
         public IActionResult Privacy()
         {
