@@ -18,6 +18,8 @@ namespace FrontEnd.Controllers
             return View();
         }
 
+         //Comentario de prueba
+
         public IActionResult Privacy()
         {
             return View();
