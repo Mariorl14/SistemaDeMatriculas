@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Index</h1>
@@ -14,16 +13,19 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.IdMatricula)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.FechaMatricula)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdCursoFkNavigation)
+                @Html.DisplayNameFor(model => model.IdEstudianteFk)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdEstudianteFkNavigation)
+                @Html.DisplayNameFor(model => model.IdPlanEstudioFk)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdPlanEstudioFkNavigation)
+                @Html.DisplayNameFor(model => model.IdCursoFk)
             </th>
             <th></th>
         </tr>
@@ -32,21 +34,24 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.IdMatricula)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.FechaMatricula)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdCursoFkNavigation.CodigoCurso)
+                @Html.DisplayFor(modelItem => item.IdEstudianteFk)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdEstudianteFkNavigation.Genero)
+                @Html.DisplayFor(modelItem => item.IdPlanEstudioFk)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdPlanEstudioFkNavigation.NombrePlanEstduio)
+                @Html.DisplayFor(modelItem => item.IdCursoFk)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdMatricula">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdMatricula">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdMatricula">Delete</a>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }

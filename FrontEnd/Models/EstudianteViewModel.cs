@@ -35,6 +35,7 @@ namespace FrontEnd.Models
         public int IdTipoUsuarioFk { get; set; }
 
         public IEnumerable<PlanEstudio> Planes { get; set; }
+        public IEnumerable<TipoUsuario> TipoUsuarios { get; set; }
         public PlanEstudio Plan { get; set; }
         public Usuario Usuario { get; set; }
 

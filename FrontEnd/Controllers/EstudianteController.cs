@@ -9,6 +9,7 @@ namespace FrontEnd.Controllers
     {
         IEstudianteDAL estudianteDAL;
         IPlanDeEstudioDAL PlanDeEstudioDAL;
+        ITipoUsuarioDAL TipoUsuarioDAL;
 
         private EstudianteViewModel Convertir(Estudiante estudiante)
         {
@@ -50,8 +51,10 @@ namespace FrontEnd.Controllers
         {
             EstudianteViewModel estudiante = new EstudianteViewModel();
             PlanDeEstudioDAL = new PlanDeEstudioDALImpl();
+            TipoUsuarioDAL = new TipoUsuarioDALImpl();
 
             estudiante.Planes = PlanDeEstudioDAL.GetAll();
+            estudiante.TipoUsuarios = TipoUsuarioDAL.GetAll();
 
             return View(estudiante);
         }
@@ -94,8 +97,10 @@ namespace FrontEnd.Controllers
             EstudianteViewModel estudiante = Convertir(estudianteDAL.Get(id));
 
             PlanDeEstudioDAL = new PlanDeEstudioDALImpl();
+            TipoUsuarioDAL = new TipoUsuarioDALImpl();
 
             estudiante.Planes = PlanDeEstudioDAL.GetAll();
+            estudiante.TipoUsuarios = TipoUsuarioDAL.GetAll();
 
             return View(estudiante);
         }

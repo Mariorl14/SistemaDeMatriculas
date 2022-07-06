@@ -1,13 +1,12 @@
 ﻿@model FrontEnd.Models.MatriculaViewModel
 
 @{
-    ViewData["Title"] = "Crear";
-  
+    ViewData["Title"] = "Create";
 }
 
-<h1>Crear Matricula</h1>
+<h1>Create</h1>
 
-
+<h4>MatriculaViewModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -20,25 +19,28 @@
             </div>
             <div class="form-group">
                 <label asp-for="IdEstudianteFk" class="control-label"></label>
-                <select asp-for="IdEstudianteFk" class ="form-control" asp-items="ViewBag.IdEstudianteFk"></select>
+                @Html.DropDownListFor(model => model.IdEstudianteFk, new SelectList(Model.Estudiantes, "IdEstudiante", "Nombre"), "--Select--")
+                <span asp-validation-for="IdEstudianteFk" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="IdPlanEstudioFk" class="control-label"></label>
-                <select asp-for="IdPlanEstudioFk" class ="form-control" asp-items="ViewBag.IdPlanEstudioFk"></select>
+                @Html.DropDownListFor(model => model.IdPlanEstudioFk, new SelectList(Model.Planes, "IdPlanEstudio", "NombrePlanEstduio"), "--Select--")
+                <span asp-validation-for="IdPlanEstudioFk" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="IdCursoFk" class="control-label"></label>
-                <select asp-for="IdCursoFk" class ="form-control" asp-items="ViewBag.IdCursoFk"></select>
+                @Html.DropDownListFor(model => model.IdCursoFk, new SelectList(Model.Cursos, "IdCurso", "NombreCurso"), "--Select--")
+                <span asp-validation-for="IdCursoFk" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Crear" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Regresar a la lista.</a>
 </div>
 
 @section Scripts {

@@ -2,15 +2,15 @@
 
 @{
     ViewData["Title"] = "Details";
-
 }
 
 <h1>Details</h1>
 
 <div>
-    <h4>Matricula</h4>
+    <h4>MatriculaViewModel</h4>
     <hr />
     <dl class="row">
+        
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.FechaMatricula)
         </dt>
@@ -18,26 +18,26 @@
             @Html.DisplayFor(model => model.FechaMatricula)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdCursoFkNavigation)
+            @Html.DisplayNameFor(model => model.IdEstudianteFk)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdCursoFkNavigation.CodigoCurso)
+            @Html.DisplayFor(model => model.IdEstudianteFk)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdEstudianteFkNavigation)
+            @Html.DisplayNameFor(model => model.IdPlanEstudioFk)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdEstudianteFkNavigation.Genero)
+            @Html.DisplayFor(model => model.IdPlanEstudioFk)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdPlanEstudioFkNavigation)
+            @Html.DisplayNameFor(model => model.IdCursoFk)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdPlanEstudioFkNavigation.NombrePlanEstduio)
+            @Html.DisplayFor(model => model.IdCursoFk)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdMatricula">Edit</a> |
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     <a asp-action="Index">Back to List</a>
 </div>

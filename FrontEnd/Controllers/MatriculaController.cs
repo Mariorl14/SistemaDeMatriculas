@@ -9,6 +9,8 @@ namespace FrontEnd.Controllers
     {
         IMatriculaDAL matriculaDAL;
         IPlanDeEstudioDAL PlanDeEstudioDAL;
+        ICursoDAL cursoDAL;
+        IEstudianteDAL estudianteDAL;
 
         private MatriculaViewModel Convertir(Matricula matricula)
         {
@@ -45,8 +47,12 @@ namespace FrontEnd.Controllers
         {
             MatriculaViewModel matricula = new MatriculaViewModel();
             PlanDeEstudioDAL = new PlanDeEstudioDALImpl();
+            estudianteDAL = new EstudianteDALImpl();
+            cursoDAL = new CursoDALImpl();
 
             matricula.Planes = PlanDeEstudioDAL.GetAll();
+            matricula.Estudiantes = estudianteDAL.GetAll();
+            matricula.Cursos = cursoDAL.GetAll();
 
             return View(matricula);
         }
@@ -69,10 +75,15 @@ namespace FrontEnd.Controllers
             matriculaDAL = new MatriculaDALImpl();
             MatriculaViewModel matricula = Convertir(matriculaDAL.Get(id));
 
-       
-
             PlanDeEstudioDAL = new PlanDeEstudioDALImpl();
+            estudianteDAL = new EstudianteDALImpl();
+            cursoDAL = new CursoDALImpl();
+
+            
+
             matricula.Plan = PlanDeEstudioDAL.Get((int)matricula.IdPlanEstudioFk);
+            matricula.Estudiante = estudianteDAL.Get((int)matricula.IdEstudianteFk);
+            matricula.Curso = cursoDAL.Get((int)matricula.IdCursoFk);
 
             return View(matricula);
         }
@@ -84,12 +95,18 @@ namespace FrontEnd.Controllers
 
         public IActionResult Edit(int id)
         {
+
             matriculaDAL = new MatriculaDALImpl();
             MatriculaViewModel matricula = Convertir(matriculaDAL.Get(id));
 
             PlanDeEstudioDAL = new PlanDeEstudioDALImpl();
+            estudianteDAL = new EstudianteDALImpl();
+            cursoDAL = new CursoDALImpl();
 
             matricula.Planes = PlanDeEstudioDAL.GetAll();
+            matricula.Estudiantes = estudianteDAL.GetAll();
+            matricula.Cursos = cursoDAL.GetAll();
+
 
             return View(matricula);
         }
