@@ -4,10 +4,12 @@ using System.Linq;
 using BackEnd.DAL;
 using BackEnd.Entities;
 using FrontEnd.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FrontEnd.Controllers
 {
+    [Authorize(Roles = "ADMIN")]
     public class TipoUsuarioController : Controller
     {
         ITipoUsuarioDAL tipoUsuarioDAL;

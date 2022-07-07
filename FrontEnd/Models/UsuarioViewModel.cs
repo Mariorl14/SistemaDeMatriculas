@@ -24,6 +24,9 @@ namespace FrontEnd.Models
         [Display(Name = "Tipo de Usuario")]
         public int IdTipoUsuarioFk { get; set; }
 
+        [Display(Name = "Rol")]
+        public string Rol { get; set; }
+
         public IEnumerable<TipoUsuario> TipoUsuarios { get; set; }
         public TipoUsuario tipo { get; set; }
     }

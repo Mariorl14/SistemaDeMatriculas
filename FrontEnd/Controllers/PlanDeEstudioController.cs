@@ -1,10 +1,12 @@
 ﻿using BackEnd.DAL;
 using BackEnd.Entities;
 using FrontEnd.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FrontEnd.Controllers
 {
+    [Authorize(Roles = "ADMIN, ESTU")]
     public class PlanDeEstudioController : Controller
     {
         IPlanDeEstudioDAL PlanDeEstudioDAL;

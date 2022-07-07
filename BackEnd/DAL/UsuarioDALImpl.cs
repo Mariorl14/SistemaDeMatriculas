@@ -102,6 +102,11 @@ namespace BackEnd.DAL
             }
         }
 
+        public Usuario ValidarUsuario(string _correo, string _clave)
+        {
+            return GetAll().Where(item => item.Email == _correo && item.Contrasena == _clave).FirstOrDefault();
+        }
+
         public bool Remove(Usuario entity)
         {
             bool result = false;

@@ -28,7 +28,7 @@ namespace BackEnd.Entities
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-48IPUU2\\SQLEXPRESS;Database=SISTEMA_ACADEMICO;Integrated Security=True;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=.;Database=SISTEMA_ACADEMICO;Integrated Security=True;Trusted_Connection=True;");
             }
         }
 
@@ -238,6 +238,11 @@ namespace BackEnd.Entities
                     .HasForeignKey(d => d.IdTipoUsuarioFk)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__USUARIO__ID_TIPO__2B3F6F97");
+
+                entity.Property(e => e.Rol)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("ROL");
             });
 
             OnModelCreatingPartial(modelBuilder);
