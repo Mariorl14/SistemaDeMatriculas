@@ -1,0 +1,38 @@
+﻿@model UsuarioViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    <div class="row mt-5">
+        <div class="col-sm-4 offset-sm-4"> 
+
+            <form asp-controller="Acceso" asp-action="Index" method="post">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Correo</label>
+    <input type="email" class="form-control" asp-for="Email">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+    <input type="password" class="form-control" asp-for="Contrasena">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Ingresar</button>
+</form>
+
+        </div>
+
+    </div>
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

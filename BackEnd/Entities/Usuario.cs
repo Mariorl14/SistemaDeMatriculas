@@ -17,6 +17,8 @@ namespace BackEnd.Entities
         public bool ConfirmarContrasena { get; set; }
         public int IdTipoUsuarioFk { get; set; }
 
+        public string Rol { get; set; }
+
         public virtual TipoUsuario IdTipoUsuarioFkNavigation { get; set; } = null!;
         public virtual ICollection<Estudiante> Estudiantes { get; set; }
     }

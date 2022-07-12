@@ -38,6 +38,11 @@
                 @Html.DropDownListFor(model => model.IdTipoUsuarioFk, new SelectList(Model.TipoUsuarios, "IdTipoUsuario", "Descripcion"), "--Select--")
                 <span asp-validation-for="IdTipoUsuarioFk" class="text-danger"></span>
             </div>
+             <div class="form-group">
+                <label asp-for="Rol" class="control-label"></label>
+                <input asp-for="Rol" class="form-control" />
+                <span asp-validation-for="Rol" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

@@ -1,10 +1,12 @@
 ﻿using BackEnd.DAL;
 using BackEnd.Entities;
 using FrontEnd.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FrontEnd.Controllers
 {
+    [Authorize(Roles = "ADMIN")]
     public class UsuarioController : Controller
     {
         IUsuarioDAL usuarioDAL;
@@ -19,7 +21,7 @@ namespace FrontEnd.Controllers
                 Telefono = usuario.Telefono,
                 Contrasena = usuario.Contrasena,    
                 ConfirmarContrasena = usuario.ConfirmarContrasena,
-                IdTipoUsuarioFk = usuario.IdTipoUsuarioFk
+                Rol = usuario.Rol
             };
         }
 
