@@ -1,8 +1,18 @@
+using BackEnd.Entities;
+using BackEnd.Utilities;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
 builder.Services.AddControllersWithViews();
+
+
+builder.Services.AddDbContext<SISTEMA_ACADEMICOContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+string connString = builder.Configuration.GetConnectionString("DefaultConnection");
+Util.ConnectionString = connString;
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(option =>
