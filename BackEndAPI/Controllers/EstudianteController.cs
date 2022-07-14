@@ -13,6 +13,7 @@ namespace BackEndAPI.Controllers
     {
 
         private IEstudianteDAL estudianteDAL;
+        private IPlanDeEstudioDAL planDAL;
 
         EstudianteModel Convertir(Estudiante estudiante)
         {
@@ -50,7 +51,6 @@ namespace BackEndAPI.Controllers
 
         }
 
-
         public EstudianteController()
         {
 
@@ -86,6 +86,7 @@ namespace BackEndAPI.Controllers
         public JsonResult Post([FromBody] EstudianteModel estudiante)
         {
             estudianteDAL.Add(Convertir(estudiante));
+            estudiante.Planes = planDAL.GetAll();
 
             return new JsonResult(Convertir(estudiante));
         }
@@ -95,6 +96,8 @@ namespace BackEndAPI.Controllers
         public JsonResult Put([FromBody] EstudianteModel estudiante)
         {
             estudianteDAL.Update(Convertir(estudiante));
+
+
 
             return new JsonResult(Convertir(estudiante));
         }

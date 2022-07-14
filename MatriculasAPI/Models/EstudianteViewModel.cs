@@ -1,9 +1,5 @@
-﻿using BackEnd.Entities;
-using System;
-using System.Collections.Generic;
+﻿
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 namespace MatriculasAPI.Models
 {
     public class EstudianteViewModel
@@ -37,10 +33,6 @@ namespace MatriculasAPI.Models
         [Display(Name = "Tipo Usuario")]
         public int IdTipoUsuarioFk { get; set; }
 
-        public IEnumerable<PlanEstudio> Planes { get; set; }
-        public IEnumerable<TipoUsuario> TipoUsuarios { get; set; }
-        public PlanEstudio Plan { get; set; }
-        public Usuario Usuario { get; set; }
 
     }
 }

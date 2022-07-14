@@ -1,4 +1,5 @@
-﻿using BackEnd.Entities;
+﻿
+using BackEnd.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace BackEndAPI.Models
