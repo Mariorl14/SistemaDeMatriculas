@@ -15,6 +15,40 @@ namespace MatriculasAPI.Controllers
     public class EstudianteController : Controller
     {
         // GET: CategoryController
+
+
+        private List<PlanEstudioViewModel> LlenarComboPlanEstudio()
+        {
+            ServiceRepository serviceObj = new ServiceRepository();
+            HttpResponseMessage response = serviceObj.GetResponse("api/estudiante/");
+            response.EnsureSuccessStatusCode();
+            var content = response.Content.ReadAsStringAsync().Result;
+            List<Models.PlanEstudioViewModel> planes = JsonConvert.DeserializeObject<List<Models.PlanEstudioViewModel>>(content);
+
+            return planes;
+        }
+        private List<UsuarioViewModel> LlenarComboUsuarios()
+        {
+            ServiceRepository serviceObj = new ServiceRepository();
+            HttpResponseMessage response = serviceObj.GetResponse("api/estudiante/");
+            response.EnsureSuccessStatusCode();
+            var content = response.Content.ReadAsStringAsync().Result;
+            List<Models.UsuarioViewModel> usuarios = JsonConvert.DeserializeObject<List<Models.UsuarioViewModel>>(content);
+
+            return usuarios;
+        }
+
+        private List<TipoUsuarioViewModel> LlenarComboTipoUsuarios()
+        {
+            ServiceRepository serviceObj = new ServiceRepository();
+            HttpResponseMessage response = serviceObj.GetResponse("api/estudiante/");
+            response.EnsureSuccessStatusCode();
+            var content = response.Content.ReadAsStringAsync().Result;
+            List<Models.TipoUsuarioViewModel> tipos = JsonConvert.DeserializeObject<List<Models.TipoUsuarioViewModel>>(content);
+
+            return tipos;
+        }
+
         public ActionResult Index()
         {
             try
@@ -54,8 +88,13 @@ namespace MatriculasAPI.Controllers
         // GET: CategoryController/Create
         public ActionResult Create()
         {
+            EstudianteViewModel estudiante = new EstudianteViewModel();
 
-            return View();
+            estudiante.Planes = LlenarComboPlanEstudio();
+            estudiante.TipoUsuarios = LlenarComboTipoUsuarios();
+
+
+            return View(estudiante);
         }
 
         // POST: CategoryController/Create

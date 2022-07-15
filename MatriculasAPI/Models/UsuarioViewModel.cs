@@ -1,10 +1,10 @@
-﻿using BackEnd.Entities;
+﻿
 using System.ComponentModel.DataAnnotations;
-
-namespace BackEndAPI.Models
+namespace MatriculasAPI.Models
 {
-    public class UsuarioModel
+    public class UsuarioViewModel
     {
+
         [Display(Name = "Id del Usuario")]
         public int IdUsuario { get; set; }
 
@@ -26,6 +26,8 @@ namespace BackEndAPI.Models
         [Display(Name = "Rol")]
         public string Rol { get; set; }
 
-       
+        public IEnumerable<TipoUsuarioViewModel> TipoUsuarios { get; set; }
+        public TipoUsuarioViewModel tipo { get; set; }
     }
 }
+
