@@ -16,7 +16,6 @@ namespace BackEndAPI.Controllers
 
         UsuarioModel Convertir(Usuario usuario)
         {
-
             return new UsuarioModel
             {
                 IdUsuario = usuario.IdUsuario,
@@ -24,7 +23,8 @@ namespace BackEndAPI.Controllers
                 Telefono = usuario.Telefono,
                 Contrasena = usuario.Contrasena,
                 ConfirmarContrasena = usuario.ConfirmarContrasena,
-                Rol = usuario.Rol
+                Rol = usuario.Rol,
+                IdTipoUsuarioFk = usuario.IdTipoUsuarioFk,
             };
 
         }
@@ -39,7 +39,9 @@ namespace BackEndAPI.Controllers
                 Telefono = usuario.Telefono,
                 Contrasena = usuario.Contrasena,
                 ConfirmarContrasena = usuario.ConfirmarContrasena,
-                Rol = usuario.Rol
+                Rol = usuario.Rol,
+                IdTipoUsuarioFk = usuario.IdTipoUsuarioFk,
+
             };
 
         }
@@ -53,20 +55,22 @@ namespace BackEndAPI.Controllers
         }
 
 
-        // GET: api/<TipoUsuarioController>
+        // GET: api/<UsuarioController>
         [HttpGet]
         public JsonResult Get()
         {
             List<Usuario> usuarios = usuarioDAL.GetAll().ToList();
             List<UsuarioModel> result = new List<UsuarioModel>();
+
             foreach (Usuario usuario in usuarios)
             {
                 result.Add(Convertir(usuario));
             }
+
             return new JsonResult(result);
         }
 
-        // GET api/<TipoUsuarioController>/5
+        // GET api/<UsuarioController>/5
         [HttpGet("{id}")]
         public JsonResult Get(int id)
         {
@@ -75,7 +79,7 @@ namespace BackEndAPI.Controllers
             return new JsonResult(Convertir(usuario));
         }
 
-        // POST api/<TipoUsuarioController>
+        // POST api/<UsuarioController>
         [HttpPost]
         public JsonResult Post([FromBody] UsuarioModel usuario)
         {
@@ -84,7 +88,7 @@ namespace BackEndAPI.Controllers
             return new JsonResult(Convertir(usuario));
         }
 
-        // PUT api/<TipoUsuarioController>/5
+        // PUT api/<UsuarioController>/5
         [HttpPut]
         public JsonResult Put([FromBody] UsuarioModel usuario)
         {
@@ -93,7 +97,7 @@ namespace BackEndAPI.Controllers
             return new JsonResult(Convertir(usuario));
         }
 
-        // DELETE api/<TipoUsuarioController>/5
+        // DELETE api/<UsuarioController>/5
         [HttpDelete("{id}")]
         public JsonResult Delete(int id)
         {
