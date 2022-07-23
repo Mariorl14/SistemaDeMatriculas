@@ -1,0 +1,71 @@
+﻿@model MatriculasAPI.Models.CursoViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalles</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ID_CURSO)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ID_CURSO)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NOMBRE_CURSO)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NOMBRE_CURSO)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CODIGO_CURSO)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CODIGO_CURSO)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PRECIO)
+        </dt>
+        <dd class = "col-sm-10">
+            ₡@Html.DisplayFor(model => model.PRECIO)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CREDITOS)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CREDITOS)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DURACION)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DURACION)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HORARIO)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HORARIO)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NATURALEZA_CURSO)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NATURALEZA_CURSO)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ID_PLAN_ESTUDIO_FK)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ID_PLAN_ESTUDIO_FK)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.ID_CURSO }) |
+    <a asp-action="Index">Regresar</a>
+</div>

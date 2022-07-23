@@ -11,5 +11,7 @@ namespace MatriculasAPI.Models
         [Display(Name = "Nombre de la Carrera")]
         public string NombrePlanEstduio { get; set; } = null!;
 
+       
+
     }
 }
