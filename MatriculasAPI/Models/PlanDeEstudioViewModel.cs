@@ -5,12 +5,12 @@ using System.Linq;
 using System.Threading.Tasks;
 namespace MatriculasAPI.Models
 {
-    public class PlanEstudioViewModel
+    public class PlanDeEstudioViewModel
     {
-
+        
 
         [Key]
-        [Display(Name = "Id del plan de estudios")]
+        [Display(Name = "Número del plan de estudios")]
         public int IdPlanEstudio { get; set; }
 
         [Display(Name = "Nombre de la Carrera")]

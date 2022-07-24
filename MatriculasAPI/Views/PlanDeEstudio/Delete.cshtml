@@ -1,0 +1,32 @@
+﻿@model MatriculasAPI.Models.PlanEstudioViewModel
+
+@{
+    ViewData["Title"] = "Planes de Estudio";
+}
+
+<h1>Borrar</h1>
+
+<h3>Seguro que quiere borrar este plan de estudio?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdPlanEstudio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdPlanEstudio)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NombrePlanEstduio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NombrePlanEstduio)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        @Html.HiddenFor(Model => Model.IdPlanEstudio)
+        <input type="submit" value="Borrar" class="btn btn-danger" /> |
+        <a asp-action="Index">Regresar</a>
+    </form>
+</div>
