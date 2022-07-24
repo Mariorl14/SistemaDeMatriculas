@@ -1,14 +1,13 @@
 ﻿using BackEnd.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace FrontEnd.Models
+namespace MatriculasAPI.Models
 {
     public class MatriculaViewModel
     {
         [Key]
         [Display(Name = "Id Matricula")]
         public int IdMatricula { get; set; }
-       
 
         [Display(Name = "Fecha de Matricula")]
         public DateTime FechaMatricula { get; set; } = new DateTime()!;
@@ -26,11 +25,12 @@ namespace FrontEnd.Models
 
         public IEnumerable<Curso> Cursos { get; set; }
         public Curso Curso { get; set; }
-
-
         public IEnumerable<PlanEstudio> Planes { get; set; }
         public PlanEstudio Plan { get; set; }
 
-       
+        //ComboBox
+        public IEnumerable<EstudianteViewModel> IdEstudiante { get; set; }
+        public IEnumerable<PlanDeEstudioViewModel> PlandeEstudiosM { get; set; }
+        public IEnumerable<CursoViewModel> CursoMatricula { get; set; }
     }
 }

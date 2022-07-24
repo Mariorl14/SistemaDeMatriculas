@@ -1,0 +1,49 @@
+﻿@model MatriculasAPI.Models.MatriculaViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>MatriculaViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FechaMatricula" class="control-label"></label>
+                <input asp-for="FechaMatricula" class="form-control" />
+                <span asp-validation-for="FechaMatricula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdEstudianteFk" class="control-label"></label>
+                @Html.DropDownListFor(model => model.IdEstudianteFk, new SelectList(Model.Estudiantes, "IdEstudiante", "Nombre"), "--Select--")
+                <span asp-validation-for="IdEstudianteFk" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdPlanEstudioFk" class="control-label"></label>
+                @Html.DropDownListFor(model => model.IdPlanEstudioFk, new SelectList(Model.Planes, "IdPlanEstudio", "NombrePlanEstduio"), "--Select--")
+                <span asp-validation-for="IdPlanEstudioFk" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCursoFk" class="control-label"></label>
+                @Html.DropDownListFor(model => model.IdCursoFk, new SelectList(Model.Cursos, "IdCurso", "NombreCurso"), "--Select--")
+                <span asp-validation-for="IdCursoFk" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar a la lista.</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

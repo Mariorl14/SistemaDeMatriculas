@@ -1,36 +1,26 @@
 ﻿using BackEnd.Entities;
+using MatriculasAPI.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace FrontEnd.Models
+namespace BackEndAPI.Models
 {
-    public class MatriculaViewModel
+    public class MatriculaModel
     {
+
         [Key]
         [Display(Name = "Id Matricula")]
         public int IdMatricula { get; set; }
-       
 
         [Display(Name = "Fecha de Matricula")]
         public DateTime FechaMatricula { get; set; } = new DateTime()!;
 
         [Display(Name = "Id Estudiante")]
         public int IdEstudianteFk { get; set; }
-        public IEnumerable<Estudiante> Estudiantes { get; set; }
-        public Estudiante Estudiante { get; set; }
 
         [Display(Name = "Carrera")]
         public int IdPlanEstudioFk { get; set; }
 
         [Display(Name = "Curso")]
         public int IdCursoFk { get; set; }
-
-        public IEnumerable<Curso> Cursos { get; set; }
-        public Curso Curso { get; set; }
-
-
-        public IEnumerable<PlanEstudio> Planes { get; set; }
-        public PlanEstudio Plan { get; set; }
-
-       
     }
 }
