@@ -1,0 +1,67 @@
+﻿@model MatriculasAPI.Models.CursoViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Crear Curso</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NOMBRE_CURSO" class="control-label"></label>
+                <input asp-for="NOMBRE_CURSO" class="form-control" maxlength="100"/>
+                <span asp-validation-for="NOMBRE_CURSO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CODIGO_CURSO" class="control-label"></label>
+                <input asp-for="CODIGO_CURSO" class="form-control" maxlength="20"/>
+                <span asp-validation-for="CODIGO_CURSO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PRECIO" class="control-label"></label>
+                <input asp-for="PRECIO" class="form-control" />
+                <span asp-validation-for="PRECIO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CREDITOS" class="control-label"></label>
+                <input asp-for="CREDITOS" class="form-control" />
+                <span asp-validation-for="CREDITOS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DURACION" class="control-label"></label>
+                <input asp-for="DURACION" class="form-control" maxlength="100"/>
+                <span asp-validation-for="DURACION" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HORARIO" class="control-label"></label>
+                <input asp-for="HORARIO" class="form-control" maxlength="100"/>
+                <span asp-validation-for="HORARIO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NATURALEZA_CURSO" class="control-label"></label>
+                <input asp-for="NATURALEZA_CURSO" class="form-control" maxlength="100"/>
+                <span asp-validation-for="NATURALEZA_CURSO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ID_PLAN_ESTUDIO_FK" class="control-label"></label>
+                @Html.DropDownListFor(model => model.ID_PLAN_ESTUDIO_FK, new SelectList(Model.PlanesEstudio, "IdPlanEstudio", "NombrePlanEstduio"), "--Select--")
+                <span asp-validation-for="ID_PLAN_ESTUDIO_FK" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MatriculasAPI.Models
+namespace BackEndAPI.Models
 {
-    public class CursoViewModel
+    public class CursoModel
     {
         [Display(Name = "Id del curso")]
         public int ID_CURSO { get; set; }
@@ -30,8 +30,5 @@ namespace MatriculasAPI.Models
 
         [Display(Name = "Plan de estudio")]
         public int ID_PLAN_ESTUDIO_FK { get; set; }
-
-        public IEnumerable<PlanEstudioViewModel> PlanesEstudio { get; set; }
-        public PlanEstudioViewModel plan { get; set; }
     }
 }

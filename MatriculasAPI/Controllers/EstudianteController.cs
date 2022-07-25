@@ -20,7 +20,7 @@ namespace MatriculasAPI.Controllers
         private List<PlanEstudioViewModel> LlenarComboPlanEstudio()
         {
             ServiceRepository serviceObj = new ServiceRepository();
-            HttpResponseMessage response = serviceObj.GetResponse("api/estudiante/");
+            HttpResponseMessage response = serviceObj.GetResponse("api/PlanEstudio/");
             response.EnsureSuccessStatusCode();
             var content = response.Content.ReadAsStringAsync().Result;
             List<Models.PlanEstudioViewModel> planes = JsonConvert.DeserializeObject<List<Models.PlanEstudioViewModel>>(content);
@@ -30,7 +30,7 @@ namespace MatriculasAPI.Controllers
         private List<UsuarioViewModel> LlenarComboUsuarios()
         {
             ServiceRepository serviceObj = new ServiceRepository();
-            HttpResponseMessage response = serviceObj.GetResponse("api/estudiante/");
+            HttpResponseMessage response = serviceObj.GetResponse("api/Usuario/");
             response.EnsureSuccessStatusCode();
             var content = response.Content.ReadAsStringAsync().Result;
             List<Models.UsuarioViewModel> usuarios = JsonConvert.DeserializeObject<List<Models.UsuarioViewModel>>(content);
@@ -41,7 +41,7 @@ namespace MatriculasAPI.Controllers
         private List<TipoUsuarioViewModel> LlenarComboTipoUsuarios()
         {
             ServiceRepository serviceObj = new ServiceRepository();
-            HttpResponseMessage response = serviceObj.GetResponse("api/estudiante/");
+            HttpResponseMessage response = serviceObj.GetResponse("api/TipoUsuario/");
             response.EnsureSuccessStatusCode();
             var content = response.Content.ReadAsStringAsync().Result;
             List<Models.TipoUsuarioViewModel> tipos = JsonConvert.DeserializeObject<List<Models.TipoUsuarioViewModel>>(content);
@@ -131,6 +131,8 @@ namespace MatriculasAPI.Controllers
             HttpResponseMessage response = serviceObj.GetResponse("api/estudiante/" + id.ToString());
             response.EnsureSuccessStatusCode();
             Models.EstudianteViewModel estudianteViewModel = response.Content.ReadAsAsync<Models.EstudianteViewModel>().Result;
+            estudianteViewModel.Planes = LlenarComboPlanEstudio();
+            estudianteViewModel.TipoUsuarios = LlenarComboTipoUsuarios();
             //ViewBag.Title = "All Products";
             return View(estudianteViewModel);
         }
