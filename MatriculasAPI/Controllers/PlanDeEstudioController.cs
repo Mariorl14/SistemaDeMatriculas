@@ -9,11 +9,17 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Rotativa;
+using Rotativa.AspNetCore;
+using System.Net;
+using BackEnd.Entities;
 
 namespace MatriculasAPI.Controllers
 {
     public class PlanDeEstudioController : Controller
     {
+
+     
         // GET: CategoryController
         public ActionResult Index()
         {
@@ -138,5 +144,7 @@ namespace MatriculasAPI.Controllers
                 throw new Exception();
             }
         }
+
+
     }
 }

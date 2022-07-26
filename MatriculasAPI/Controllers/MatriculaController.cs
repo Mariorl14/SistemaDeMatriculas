@@ -13,7 +13,7 @@ namespace MatriculasAPI.Controllers
         private List<EstudianteViewModel> LlenarComboIdEstudiante()
         {
             ServiceRepository serviceObj = new ServiceRepository();
-            HttpResponseMessage response = serviceObj.GetResponse("api/Matricula/");
+            HttpResponseMessage response = serviceObj.GetResponse("api/Estudiante/");
             response.EnsureSuccessStatusCode();
             var content = response.Content.ReadAsStringAsync().Result;
             List<Models.EstudianteViewModel> estudiante = JsonConvert.DeserializeObject<List<Models.EstudianteViewModel>>(content);
@@ -24,7 +24,7 @@ namespace MatriculasAPI.Controllers
         private List<PlanEstudioViewModel> LlenarComboPlanEstudio()
         {
             ServiceRepository serviceObj = new ServiceRepository();
-            HttpResponseMessage response = serviceObj.GetResponse("api/Matricula/");
+            HttpResponseMessage response = serviceObj.GetResponse("api/PlanEstudio/");
             response.EnsureSuccessStatusCode();
             var content = response.Content.ReadAsStringAsync().Result;
             List<Models.PlanEstudioViewModel> planes = JsonConvert.DeserializeObject<List<Models.PlanEstudioViewModel>>(content);
@@ -36,7 +36,7 @@ namespace MatriculasAPI.Controllers
         private List<CursoViewModel> LlenarComboCursos()
         {
             ServiceRepository serviceObj = new ServiceRepository();
-            HttpResponseMessage response = serviceObj.GetResponse("api/Matricula/");
+            HttpResponseMessage response = serviceObj.GetResponse("api/Curso/");
             response.EnsureSuccessStatusCode();
             var content = response.Content.ReadAsStringAsync().Result;
             List<Models.CursoViewModel> tipos = JsonConvert.DeserializeObject<List<Models.CursoViewModel>>(content);
@@ -72,7 +72,7 @@ namespace MatriculasAPI.Controllers
             MatriculaViewModel matricula = new MatriculaViewModel();
 
             matricula.IdEstudiante = LlenarComboIdEstudiante();
-            matricula.PlandeEstudiosM = (IEnumerable<PlanDeEstudioViewModel>)LlenarComboPlanEstudio();
+            matricula.PlandeEstudiosM = LlenarComboPlanEstudio();
             matricula.CursoMatricula = LlenarComboCursos();
 
             return View(matricula);

@@ -19,17 +19,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="IdEstudianteFk" class="control-label"></label>
-                @Html.DropDownListFor(model => model.IdEstudianteFk, new SelectList(Model.Estudiantes, "IdEstudiante", "Nombre"), "--Select--")
+                @Html.DropDownListFor(model => model.IdEstudianteFk, new SelectList(Model.IdEstudiante, "IdEstudiante", "Nombre"), "--Select--")
                 <span asp-validation-for="IdEstudianteFk" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="IdPlanEstudioFk" class="control-label"></label>
-                @Html.DropDownListFor(model => model.IdPlanEstudioFk, new SelectList(Model.Planes, "IdPlanEstudio", "NombrePlanEstduio"), "--Select--")
+                @Html.DropDownListFor(model => model.IdPlanEstudioFk, new SelectList(Model.PlandeEstudiosM, "IdPlanEstudio", "NombrePlanEstduio"), "--Select--")
                 <span asp-validation-for="IdPlanEstudioFk" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="IdCursoFk" class="control-label"></label>
-                @Html.DropDownListFor(model => model.IdCursoFk, new SelectList(Model.Cursos, "IdCurso", "NombreCurso"), "--Select--")
+                @Html.DropDownListFor(model => model.IdCursoFk, new SelectList(Model.CursoMatricula, "ID_CURSO", "NOMBRE_CURSO"), "--Select--")
                 <span asp-validation-for="IdCursoFk" class="text-danger"></span>
             </div>
             <div class="form-group">

@@ -30,7 +30,7 @@ namespace MatriculasAPI.Models
 
         //ComboBox
         public IEnumerable<EstudianteViewModel> IdEstudiante { get; set; }
-        public IEnumerable<PlanDeEstudioViewModel> PlandeEstudiosM { get; set; }
+        public IEnumerable<PlanEstudioViewModel> PlandeEstudiosM { get; set; }
         public IEnumerable<CursoViewModel> CursoMatricula { get; set; }
     }
 }
