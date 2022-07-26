@@ -7,13 +7,13 @@ namespace BackEndAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MatriculaController : Controller
+    public class MatriculaController : ControllerBase
     {
         private IMatriculaDAL matriculaDAL;
 
         MatriculaModel Convertir(Matricula matricula) {
 
-            return new MatriculaModel
+                return new MatriculaModel
             {
 
                 IdMatricula = matricula.IdMatricula,

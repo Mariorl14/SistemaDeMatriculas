@@ -112,7 +112,7 @@ namespace MatriculasAPI.Controllers
        
         public ActionResult Edit(int id)
         {
-            ServiceRepository serviceObj = new ServiceRepository();
+           ServiceRepository serviceObj = new ServiceRepository();
             HttpResponseMessage response = serviceObj.GetResponse("api/Matricula/" + id.ToString());
             response.EnsureSuccessStatusCode();
             Models.MatriculaViewModel matriculaViewModel = response.Content.ReadAsAsync<Models.MatriculaViewModel>().Result;
