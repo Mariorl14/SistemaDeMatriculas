@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using BackEnd.Authentication;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace BackEnd.Entities
 {
-    public partial class SISTEMA_ACADEMICOContext : DbContext
+    public partial class SISTEMA_ACADEMICOContext : IdentityDbContext<ApplicationUser>
     {
         public SISTEMA_ACADEMICOContext()
         {
@@ -13,6 +15,8 @@ namespace BackEnd.Entities
             var optionsBuilder = new DbContextOptionsBuilder<SISTEMA_ACADEMICOContext>();
             optionsBuilder.UseSqlServer(Utilities.Util.ConnectionString);
 
+           
+                    
         }
 
         public SISTEMA_ACADEMICOContext(DbContextOptions<SISTEMA_ACADEMICOContext> options)
@@ -30,6 +34,8 @@ namespace BackEnd.Entities
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(Utilities.Util.ConnectionString);
+            base.OnConfiguring(optionsBuilder);
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
