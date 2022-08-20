@@ -1,0 +1,55 @@
+﻿@model IEnumerable<MatriculasAPI.Models.MatriculaViewModel>
+
+@{
+    ViewData["Title"] = "Mis Cursos";
+}
+
+<h1>MisCursos</h1>
+
+<p>
+  
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdMatricula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaMatricula)
+            </th>
+            <th hidden>
+                @Html.DisplayNameFor(model => model.IdEstudianteFk)
+            </th>
+            <th hidden>
+                @Html.DisplayNameFor(model => model.IdPlanEstudioFk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCursoFk)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdMatricula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaMatricula)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.IdEstudianteFk)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.IdPlanEstudioFk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCursoFk)
+            </td>
+           
+        </tr>
+}
+    </tbody>
+</table>

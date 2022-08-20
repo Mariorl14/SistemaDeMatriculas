@@ -9,10 +9,14 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Rotativa;
-using Rotativa.AspNetCore;
 using System.Net;
 using BackEnd.Entities;
+using Syncfusion.Pdf;
+using Syncfusion.HtmlConverter;
+using Syncfusion.Pdf.Tables;
+
+using Syncfusion.Drawing;
+using System.Data;
 
 namespace MatriculasAPI.Controllers
 {
@@ -143,6 +147,76 @@ namespace MatriculasAPI.Controllers
             {
                 throw new Exception();
             }
+        }
+
+        public ActionResult Print2Pdf() {
+
+            //Create a new PDF document.
+
+            PdfDocument doc = new PdfDocument();
+
+            //Add a page.
+
+            PdfPage page = doc.Pages.Add();
+
+            // Create a PdfLightTable.
+
+            PdfLightTable pdfLightTable = new PdfLightTable();
+
+            //Add values to list
+
+            List<object> data = new List<object>();
+
+            object row = new { Nombre_Curso = "Id del plan de estudios", Carrera = "Nombre de la Carrera" };
+
+
+            data.Add(row);
+            row = new { Nombre_Curso = "1", Carrera = "Ingeniería en Sistemas" };
+            data.Add(row);
+            //Add list to IEnumerable
+
+            IEnumerable<object> table = data;
+
+            //Assign data source.
+
+            pdfLightTable.DataSource = table;
+
+            //Draw PdfLightTable.
+
+            pdfLightTable.Draw(page, new Syncfusion.Drawing.PointF(0, 0));
+
+            //Creating the stream object
+
+            MemoryStream stream = new MemoryStream();
+
+            //Save the PDF document to stream.
+
+            doc.Save(stream);
+
+            //If the position is not set to '0' then the PDF will be empty.
+
+            stream.Position = 0;
+
+            //Close the document.
+
+            doc.Close(true);
+
+            //Defining the ContentType for pdf file.
+
+            string contentType = "application/pdf";
+
+            //Define the file name.
+
+            string fileName = "Output.pdf";
+
+            //Creates a FileContentResult object by using the file contents, content type, and file name.
+
+            return File(stream, contentType, fileName);
+
+
+
+            return View();
+        
         }
 
 

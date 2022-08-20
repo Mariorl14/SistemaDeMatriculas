@@ -46,6 +46,8 @@ namespace MatriculasAPI.Controllers
 
         #endregion
         public ActionResult Index()
+
+
         {
             try
             {
@@ -58,6 +60,29 @@ namespace MatriculasAPI.Controllers
 
                 ViewBag.Title = "Matricula";
                 return View(matricula);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public ActionResult MisCursos()
+        {
+            try
+            {
+                ServiceRepository serviceObj = new ServiceRepository();
+                HttpResponseMessage response = serviceObj.GetResponse("api/matricula/");
+                response.EnsureSuccessStatusCode();
+                var content = response.Content.ReadAsStringAsync().Result;
+
+                List<Models.MatriculaViewModel> matriculas = JsonConvert.DeserializeObject<List<Models.MatriculaViewModel>>(content).Where(b => b.IdEstudianteFk.Equals(3)).ToList();
+
+                ViewBag.Title = "Matriculas";
+
+
+
+                return View(matriculas);
             }
             catch (Exception)
             {

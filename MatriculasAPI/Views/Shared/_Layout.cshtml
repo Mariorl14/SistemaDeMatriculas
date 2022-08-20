@@ -186,6 +186,9 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="PlanDeEstudio" asp-action="Index">Planes de Estudio</a>
                         </li>
+                         <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Matricula" asp-action="MisCursos">Mis Cursos</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Curso" asp-action="Index">Cursos</a>
                         </li>
@@ -193,8 +196,9 @@
                             <a class="nav-link" asp-area="" asp-controller="Estudiante" asp-action="Index">Estudiantes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Matricula" asp-action="Index">Matriculas</a>
+                            <a class="nav-link" asp-area="" asp-controller="Matricula" asp-action="Index">Matricular</a>
                         </li>
+
                         @if (User.IsInRole("ADMIN"))
                         {
                             <li class="nav-item">
@@ -252,6 +256,22 @@
         </div>
         <div class="card-body">
           @RenderBody()
+            <footer class="navbar-fixed-bottom">
+            <button class="open-button" onclick="openForm()">Chat</button>
+            <div class="chat-popup" id="myForm">
+                <form action="/action_page.php" class="form-container">
+                    <iframe allow="microphone;"
+                            position="absolute;"
+                            scrolling="yes;"
+                            width="350"
+                            height="430"
+                            src="https://console.dialogflow.com/api-client/demo/embedded/aeb4e25a-3a81-4866-8338-f25dacaffbf7"></iframe>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Cerrar</button>
+
+                </form>
+            </div>
+            <p>&copy; @DateTime.Now.Year - Sistema Gestión Matrículas Seminario Metodista</p>
+        </footer>
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
