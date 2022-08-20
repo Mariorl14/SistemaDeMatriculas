@@ -73,16 +73,30 @@ namespace MatriculasAPI.Controllers
             {
                 ServiceRepository serviceObj = new ServiceRepository();
                 HttpResponseMessage response = serviceObj.GetResponse("api/matricula/");
+                HttpResponseMessage responseCurso = serviceObj.GetResponse("api/curso/");
                 response.EnsureSuccessStatusCode();
                 var content = response.Content.ReadAsStringAsync().Result;
+                var contentCurso = responseCurso.Content.ReadAsStringAsync().Result;
 
                 List<Models.MatriculaViewModel> matriculas = JsonConvert.DeserializeObject<List<Models.MatriculaViewModel>>(content).Where(b => b.IdEstudianteFk.Equals(3)).ToList();
+                List<Models.CursoViewModel> cursos = JsonConvert.DeserializeObject<List<Models.CursoViewModel>>(contentCurso);
+                List<Models.MatriculaViewModel> matriculasResult = new List<Models.MatriculaViewModel>();
+
+                foreach (var curso in matriculas)
+                {
+
+                    curso.nombrecurso = cursos.Where(b => b.ID_CURSO == curso.IdCursoFk)
+                     .Select(x => x.NOMBRE_CURSO).FirstOrDefault();
+
+                                      matriculasResult.Add(curso);
+                }
+
 
                 ViewBag.Title = "Matriculas";
 
 
 
-                return View(matriculas);
+                return View(matriculasResult);
             }
             catch (Exception)
             {

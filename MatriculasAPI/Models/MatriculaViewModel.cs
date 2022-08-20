@@ -22,6 +22,7 @@ namespace MatriculasAPI.Models
 
         [Display(Name = "Curso")]
         public int IdCursoFk { get; set; }
+        public string nombrecurso { get; set; }
 
         public IEnumerable<Curso> Cursos { get; set; }
         public Curso Curso { get; set; }
