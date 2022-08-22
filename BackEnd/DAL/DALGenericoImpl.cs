@@ -51,7 +51,7 @@ namespace BackEnd.DAL
         {
             try
             {
-                return Context.Set<TEntity>().Where(predicate);
+                return Context.Set<TEntity>().Where(predicate).ToList();
             }
             catch (Exception)
             {

@@ -76,6 +76,21 @@ namespace BackEndAPI.Controllers
             return new JsonResult(Convertir(curso));
         }
 
+        // GET api/<CursoController>/Plan/idplan
+        [HttpGet("Plan/{IdPlan}")]
+        public JsonResult GetByPlan(int IdPlan)
+        {
+            List<Curso> Cursos = cursoDAL.GetByPlan(IdPlan).ToList();
+            List<CursoModel> result = new List<CursoModel>();
+
+            foreach (Curso Curso in Cursos)
+            {
+                result.Add(Convertir(Curso));
+            }
+
+            return new JsonResult(result);
+        }
+
         // POST api/<UsuarioController>
         [HttpPost]
         public JsonResult Post([FromBody] CursoModel curso)

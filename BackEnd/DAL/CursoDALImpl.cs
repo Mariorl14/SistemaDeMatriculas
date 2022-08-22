@@ -66,6 +66,23 @@ namespace BackEnd.DAL
             }
         }
 
+        public IEnumerable<Curso> GetByPlan(int IdPlan)
+        {
+            try
+            {
+                IEnumerable<Curso> cursos;
+                using (UnidadDeTrabajo<Curso> unidad = new UnidadDeTrabajo<Curso>(context))
+                {
+                    cursos = unidad.genericDAL.Find(x => x.IdPlanEstudioFk == IdPlan);
+                }
+                return cursos;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public List<Curso> Get()
         {
             try

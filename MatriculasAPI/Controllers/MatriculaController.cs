@@ -39,15 +39,24 @@ namespace MatriculasAPI.Controllers
             HttpResponseMessage response = serviceObj.GetResponse("api/Curso/");
             response.EnsureSuccessStatusCode();
             var content = response.Content.ReadAsStringAsync().Result;
-            List<Models.CursoViewModel> tipos = JsonConvert.DeserializeObject<List<Models.CursoViewModel>>(content);
+            List<Models.CursoViewModel> cursos = JsonConvert.DeserializeObject<List<Models.CursoViewModel>>(content);
 
-            return tipos;
+            return cursos;
+        }
+
+        private List<CursoViewModel> LlenarComboCursosPlan(int idPlan)
+        {
+            ServiceRepository serviceObj = new ServiceRepository();
+            HttpResponseMessage response = serviceObj.GetResponse("api/Curso/Plan/" + idPlan);
+            response.EnsureSuccessStatusCode();
+            var content = response.Content.ReadAsStringAsync().Result;
+            List<Models.CursoViewModel> cursos = JsonConvert.DeserializeObject<List<Models.CursoViewModel>>(content);
+
+            return cursos;
         }
 
         #endregion
         public ActionResult Index()
-
-
         {
             try
             {
@@ -78,7 +87,7 @@ namespace MatriculasAPI.Controllers
                 var content = response.Content.ReadAsStringAsync().Result;
                 var contentCurso = responseCurso.Content.ReadAsStringAsync().Result;
 
-                List<Models.MatriculaViewModel> matriculas = JsonConvert.DeserializeObject<List<Models.MatriculaViewModel>>(content).Where(b => b.IdEstudianteFk.Equals(3)).ToList();
+                List<Models.MatriculaViewModel> matriculas = JsonConvert.DeserializeObject<List<Models.MatriculaViewModel>>(content).Where(b => b.IdEstudianteFk.Equals(11)).ToList();
                 List<Models.CursoViewModel> cursos = JsonConvert.DeserializeObject<List<Models.CursoViewModel>>(contentCurso);
                 List<Models.MatriculaViewModel> matriculasResult = new List<Models.MatriculaViewModel>();
 
@@ -104,39 +113,58 @@ namespace MatriculasAPI.Controllers
             }
         }
 
-        #region Agregar
-
-        public ActionResult Create()
+        public ActionResult Matricular()
         {
-            MatriculaViewModel matricula = new MatriculaViewModel();
+            int estudianteId = 11;
+            int planEstudio = 1;
 
-            matricula.IdEstudiante = LlenarComboIdEstudiante();
-            matricula.PlandeEstudiosM = LlenarComboPlanEstudio();
-            matricula.CursoMatricula = LlenarComboCursos();
+            MatriculaViewModel matricula = new MatriculaViewModel();
+            matricula.CursoMatricula = LlenarComboCursosPlan(planEstudio);
+
+            ServiceRepository serviceObj = new ServiceRepository();
+            HttpResponseMessage responseEstudiante = serviceObj.GetResponse("api/Estudiante/" + estudianteId);
+            HttpResponseMessage responsePlan = serviceObj.GetResponse("api/PlanEstudio/" + planEstudio);
+
+            var contentEstudiante = responseEstudiante.Content.ReadAsStringAsync().Result;
+            var contentPlan = responsePlan.Content.ReadAsStringAsync().Result;
+
+            EstudianteViewModel estudiante = JsonConvert.DeserializeObject<EstudianteViewModel>(contentEstudiante);
+            PlanEstudioViewModel plan = JsonConvert.DeserializeObject<PlanEstudioViewModel>(contentPlan);
+
+
+            List<EstudianteViewModel> listaEstudiantes = new List<EstudianteViewModel>();
+            listaEstudiantes.Add(estudiante);
+
+            List<PlanEstudioViewModel> listaPlanes = new List<PlanEstudioViewModel>();
+            listaPlanes.Add(plan);
+
+            matricula.PlandeEstudiosM = listaPlanes;
+            matricula.IdEstudiante = listaEstudiantes;
+            
 
             return View(matricula);
+
         }
 
+        // POST: MatriculaController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Models.MatriculaViewModel matricula, List<IFormFile> upload)
+        public ActionResult Create(MatriculaViewModel matricula, List<IFormFile> upload)
         {
             try
             {
-
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.PostResponse("api/Matricula", matricula);
+                HttpResponseMessage response = serviceObj.PostResponse("api/matricula", matricula);
                 response.EnsureSuccessStatusCode();
-                return RedirectToAction("Index");
+                return RedirectToAction("MisCursos");
             }
             catch (HttpRequestException
           )
             {
-                return RedirectToAction("Error", "Home");
+                return RedirectToAction("Error", "MisCursos");
             }
 
-            catch (Exception
-            )
+            catch (Exception)
             {
 
                 throw;
@@ -144,67 +172,6 @@ namespace MatriculasAPI.Controllers
         }
 
 
-        #endregion
-
-
-        #region Editar
-       
-        public ActionResult Edit(int id)
-        {
-           ServiceRepository serviceObj = new ServiceRepository();
-            HttpResponseMessage response = serviceObj.GetResponse("api/Matricula/" + id.ToString());
-            response.EnsureSuccessStatusCode();
-            Models.MatriculaViewModel matriculaViewModel = response.Content.ReadAsAsync<Models.MatriculaViewModel>().Result;
-       
-            return View(matriculaViewModel);
-        }
-
-        [HttpPost]
-        public ActionResult Edit(Models.MatriculaViewModel matricula, List<IFormFile> upload)
-        {
-
-            ServiceRepository serviceObj = new ServiceRepository();
-            HttpResponseMessage response = serviceObj.PutResponse("api/Matricula", matricula);
-            response.EnsureSuccessStatusCode();
-            return RedirectToAction("Index");
-        }
-        #endregion
-
-        #region Eliminar
-
-        [HttpGet]
-        public ActionResult Delete(int id)
-        {
-
-
-            ServiceRepository serviceObj = new ServiceRepository();
-            HttpResponseMessage response = serviceObj.GetResponse("api/Matricula/" + id.ToString());
-            response.EnsureSuccessStatusCode();
-            Models.MatriculaViewModel matriculaViewModel = response.Content.ReadAsAsync<Models.MatriculaViewModel>().Result;
-           
-            return View(matriculaViewModel);
-        }
-
-
-        [HttpPost]
-        public ActionResult Delete(Models.MatriculaViewModel matricula)
-        {
-            ServiceRepository serviceObj = new ServiceRepository();
-            HttpResponseMessage response = serviceObj.DeleteResponse("api/Matricula/" + matricula.IdMatricula.ToString());
-            response.EnsureSuccessStatusCode();
-            bool Eliminado = response.Content.ReadAsAsync<bool>().Result;
-
-            if (Eliminado)
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                throw new Exception();
-            }
-        }
-
-        #endregion
 
         public ActionResult Details(int id)
         {
