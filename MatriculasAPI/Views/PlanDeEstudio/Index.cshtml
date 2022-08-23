@@ -18,27 +18,34 @@
             <th>
                 @Html.DisplayNameFor(model => model.NombrePlanEstduio)
             </th>
-             <th>
-                 <label for="Name">Acciones</label>
+            @if (User.IsInRole("ADMIN"))
+                {
+            <th>
+                <label for="Name">Acciones</label>
             </th>
+                }
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdPlanEstudio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombrePlanEstduio)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id=item.IdPlanEstudio }) |
-                @Html.ActionLink("Detalles", "Details", new { id=item.IdPlanEstudio }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id=item.IdPlanEstudio })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdPlanEstudio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombrePlanEstduio)
+                </td>
+                @if (User.IsInRole("ADMIN"))
+                {
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id=item.IdPlanEstudio }) |
+                        @Html.ActionLink("Detalles", "Details", new { id=item.IdPlanEstudio }) |
+                        @Html.ActionLink("Eliminar", "Delete", new { id=item.IdPlanEstudio })
+                    </td>
+                }
+            </tr>
+        }
     </tbody>
 </table>

@@ -62,17 +62,6 @@
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
-                    </div>
-                </div>
-
-
-
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -83,27 +72,30 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="PlanDeEstudio" asp-action="Index">Planes de Estudio</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Matricula" asp-action="MisCursos">Mis Cursos</a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Curso" asp-action="Index">Cursos</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Estudiante" asp-action="Index">Estudiantes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Matricula" asp-action="Index">Matricular</a>
-                        </li>
+                        @if (User.IsInRole("Estudiante"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Matricula" asp-action="MisCursos">Mis Cursos</a>
+                            </li>
+                        }
+
+
 
                         @if (User.IsInRole("ADMIN"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Usuario" asp-action="Index">Usuarios</a>
+                                <a class="nav-link" asp-area="" asp-controller="Usuario" asp-action="Index">Gestión de Usuarios</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="TipoUsuario" asp-action="Index">Tipo de Usarios</a>
+                                <a class="nav-link" asp-area="" asp-controller="TipoUsuario" asp-action="Index">Tipo de Usuarios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Estudiante" asp-action="Index">Gestión de Estudiantes</a>
                             </li>
 
                         }
@@ -127,7 +119,6 @@
                     <div class="card-body">
                         @RenderBody()
                         <footer class="navbar-fixed-bottom">
-                            
                         </footer>
                     </div>
                 </div>

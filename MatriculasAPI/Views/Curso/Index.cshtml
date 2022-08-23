@@ -73,11 +73,15 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.ID_PLAN_ESTUDIO_FK)
                 </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.ID_CURSO }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.ID_CURSO }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.ID_CURSO })
-                </td>
+                @if (User.IsInRole("ADMIN"))
+                {
+                    <td>
+
+                        @Html.ActionLink("Edit", "Edit", new { id=item.ID_CURSO }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.ID_CURSO }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.ID_CURSO })
+                    </td>
+                }
             </tr>
         }
     </tbody>
