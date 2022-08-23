@@ -49,7 +49,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="ID_PLAN_ESTUDIO_FK" class="control-label"></label>
-                @Html.DropDownListFor(model => model.ID_PLAN_ESTUDIO_FK, new SelectList(Model.PlanesEstudio, "IdPlanEstudio", "NombrePlanEstduio"), "--Select--")
+                @Html.DropDownListFor(model => model.ID_PLAN_ESTUDIO_FK, new SelectList(Model.PlanesEstudio, "IdPlanEstudio", "NombrePlanEstduio"), "--Seleccionar--")
                 <span asp-validation-for="ID_PLAN_ESTUDIO_FK" class="text-danger"></span>
             </div>
             <div class="form-group">
