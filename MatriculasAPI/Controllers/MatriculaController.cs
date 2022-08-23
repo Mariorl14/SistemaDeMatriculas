@@ -87,7 +87,7 @@ namespace MatriculasAPI.Controllers
                 var content = response.Content.ReadAsStringAsync().Result;
                 var contentCurso = responseCurso.Content.ReadAsStringAsync().Result;
 
-                List<Models.MatriculaViewModel> matriculas = JsonConvert.DeserializeObject<List<Models.MatriculaViewModel>>(content).Where(b => b.IdEstudianteFk.Equals(11)).ToList();
+                List<Models.MatriculaViewModel> matriculas = JsonConvert.DeserializeObject<List<Models.MatriculaViewModel>>(content).Where(b => b.IdEstudianteFk.Equals(3)).ToList();
                 List<Models.CursoViewModel> cursos = JsonConvert.DeserializeObject<List<Models.CursoViewModel>>(contentCurso);
                 List<Models.MatriculaViewModel> matriculasResult = new List<Models.MatriculaViewModel>();
 
@@ -115,7 +115,7 @@ namespace MatriculasAPI.Controllers
 
         public ActionResult Matricular()
         {
-            int estudianteId = 11;
+            int estudianteId = 3;
             int planEstudio = 1;
 
             MatriculaViewModel matricula = new MatriculaViewModel();

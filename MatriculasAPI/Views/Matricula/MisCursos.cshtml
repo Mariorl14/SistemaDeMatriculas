@@ -4,12 +4,133 @@
     ViewData["Title"] = "Mis Cursos";
 }
 
-<h1>MisCursos</h1>
 
-<p>
+<head>
+        <meta charset="UTF-8">
+    <title>Hello Datatables with buttons!</title>
+
+    <!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js"></script>
+
+    <!-- Datatables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.18/datatables.min.css">
+    <script src="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.18/datatables.min.js"></script>
+
+    <!-- Buttons -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.53/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.53/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+  
+
+</head>
+
+<body>
+        <div class="container header-top">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mt-5">
+                <a href="@Url.Action("Matricular", "Matricula")"><button class="btn btn-primary mt-3 mb-4">Agregar Matricula</button></a>
+            </div>
+        </div>
+
+    <div class="container header-top">
+        <div class="row justify-content-center">
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="table-wrap">
+                    <table class="table" id="VerMatricula">
+                        <thead class="table-dark">
+                            <tr class="text-center">
+                                <th>#</th>
+                                <th>Fecha Matricula</th>
+                                <th>ID Estudiante</th>
+                                <th>ID Plan de estudios</th>
+                                <th>Nombre curso</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var matricula in Model)
+                            {
+                                <tr class="text-center">
+                                    <th>@matricula.IdMatricula</th>
+                                    <td>@matricula.FechaMatricula</td>
+                                    <td>@matricula.IdEstudianteFk</td>
+                                    <td>@matricula.IdPlanEstudioFk</td>
+                                     <td>@matricula.nombrecurso</td>
+                                    
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+
+    
+    <script type="text/javascript">
+     
+         $(document).ready(function () {
+            $('#mydatatable thead th').each(function () {
+                var title = $(this).text();
+                $(this).html('<input type="text" placeholder="Filtrar.." />');
+            });
+
+            var table = $('#VerMatricula').DataTable({
+                "dom": 'B<"float-left"i><"float-right"f>t<"float-left"l><"float-right"p><"clearfix">',
+                "responsive": false,
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+                },
+                "order": [
+                    [0, "desc"]
+                ],
+                "initComplete": function () {
+                    this.api().columns().every(function () {
+                        var that = this;
+
+                        $('input', this.footer()).on('keyup change', function () {
+                            if (that.search() !== this.value) {
+                                that
+                                    .search(this.value)
+                                    .draw();
+                            }
+                        });
+                    })
+                },
+                "buttons": [ 'excel', 'pdf', 'print']
+            });
+        });
+    </script>
+
+</body>
+
+
+
+ <!--   
+
+
     <a class="btn btn-success" asp-action="Matricular">Matricular</a>
-</p>
-<table class="table">
+
+<body>
+<table class="table" id="VerMatricula">
     <thead>
         <tr>
             <th>
@@ -53,3 +174,38 @@
 }
     </tbody>
 </table>
+  <script type="text/javascript">
+     
+         $(document).ready(function () {
+            $('#mydatatable thead th').each(function () {
+                var title = $(this).text();
+                $(this).html('<input type="text" placeholder="Filtrar.." />');
+            });
+
+            var table = $('#VerMatricula').DataTable({
+                "dom": 'B<"float-left"i><"float-right"f>t<"float-left"l><"float-right"p><"clearfix">',
+                "responsive": false,
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+                },
+                "order": [
+                    [0, "desc"]
+                ],
+                "initComplete": function () {
+                    this.api().columns().every(function () {
+                        var that = this;
+
+                        $('input', this.footer()).on('keyup change', function () {
+                            if (that.search() !== this.value) {
+                                that
+                                    .search(this.value)
+                                    .draw();
+                            }
+                        });
+                    })
+                },
+                "buttons": ['csv', 'excel', 'pdf', 'print']
+            });
+        });
+    </script>
+    </body> -->
