@@ -1,18 +1,18 @@
 ﻿@model IEnumerable<MatriculasAPI.Models.UsuarioViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Usuarios";
 }
 
-<h1>Index</h1>
+<h1>Gestión de Usuarios</h1>
 <head>
   
     <link href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet'>
--    <link href='https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css' rel='stylesheet'>
+   <link href='https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css' rel='stylesheet'>
 </head>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear Nuevo</a>
 </p>
 <table class="table">
     <thead>
@@ -50,9 +50,9 @@
             </td>
             
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdUsuario">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdUsuario">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdUsuario">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.IdUsuario">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.IdUsuario">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdUsuario">Eliminar</a>
             </td>
         </tr>
 }
