@@ -5,10 +5,14 @@
 }
 
 <h1>Planes de Estudio</h1>
-
+@if (User.IsInRole("ADMIN"))
+                {
 <p>
+       
     <a asp-action="Create">Crear Nuevo</a>
+
 </p>
+                }
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
